@@ -1,0 +1,50 @@
+﻿@model KitapTuru //Kitap türü tipinde nesne oluşturuyor Dependency Injection yapar yani bizim burada new ile bir şey yazmamıza gerek kalmadan oluşturuyor.
+
+
+<form method="post">
+    @*Bu Post Actionu Bu viewin Controllerını çağırır. Bunun Controllerı KitapTuruControllerdır. Yani biz bunu yazdığımız için bu gidiyor KitapTuruController daki Ekle ismin de ama HTTPPOST olan method arıyor.  *@
+
+
+    <div class="border p-3 mt-5">
+        <div class="row pb-3">
+
+            <h2 class="text-primary">Kitap Türü Güncelle</h2>
+            <hr />
+
+
+        </div>
+
+        <div class="mb-3">
+
+            <label asp-for="Ad" class="p-0"></label>
+
+
+            <input asp-for="Ad" class="form-control" /> @*Burada Model de ne kullandıysak asp-for içerisinde aynı adı kullanmak zorundayız aksi halde çalışmaz. Burada yazdığımız şey KitapTuru sınıfının içerisinde arar.*@
+
+
+            <span asp-validation-for="Ad" class="text-danger"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-lg btn-warning" style="width:250px">Kitap Türü Güncelle</button>
+
+        <a asp-controller="KitapTuru" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">Kitap Türlerine Geri Dön</a> @*bu kod bir HTML bağlantısını temsil eder. Bu bağlantı, "KitapTuru" Controller'ındaki "Ekle" Action'ına yönlendirilir ve "Yeni Kitap Türü Oluştur" metni içeren bir düğme gibi görünen bir bağlantıdır. Bu bağlantı tıklandığında, "Ekle" Action'ı çalışır ve ilgili işlem gerçekleştirilir.*@
+
+    </div>
+
+
+
+
+
+
+</form>
+
+@section Scripts {
+    @{
+
+
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+
+    } @*bu şu manaya gelir buradaki validation javascript içerisindeki kontrollerini otomatik olarak bunun içine gömdük manasına gelir. JavaScript kütüphanelerini dahil etmek için kullanılır. Yani bu javascript gidiyor required de olan hata mesajını alıyor ve gösteriyor.Yani özetle kullanıcı girdilerini front end tarafında kontrol etmiş oluyoruz.*@.

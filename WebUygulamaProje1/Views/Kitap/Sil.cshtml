@@ -1,0 +1,80 @@
+﻿@model Kitap //Kitap tipinde nesne oluşturuyor Dependency Injection yapar yani bizim burada new ile bir şey yazmamıza gerek kalmadan oluşturuyor.
+
+
+<form method="post">
+    @*Bu Post Actionu Bu viewin Controllerını çağırır. Bunun Controllerı KitapTuruControllerdır. Yani biz bunu yazdığımız için bu gidiyor KitapController daki Ekle ismin de ama HTTPPOST olan method arıyor.  *@
+
+
+    <div class="border p-3 mt-5">
+        <div class="row pb-3">
+
+            <h2 class="text-primary">Kitap Sil</h2>
+            <hr />
+
+
+        </div>
+
+        <div class="mb-3">
+
+            <label asp-for="KitapAdi" class="p-0"></label>
+
+
+            <input asp-for="KitapAdi" disabled class="form-control class="form-control"/> @*Burada Model de ne kullandıysak asp-for içerisinde aynı adı kullanmak zorundayız aksi halde çalışmaz. Burada yazdığımız şey Kitap sınıfının içerisinde arar.*@
+
+
+            <span asp-validation-for="KitapAdi" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+
+            <label asp-for="Tanim" class="p-0"></label>
+
+
+            <input asp-for="Tanim" disabled class="form-control class=" form-control" /> @*Burada Model de ne kullandıysak asp-for içerisinde aynı adı kullanmak zorundayız aksi halde çalışmaz. Burada yazdığımız şey Kitap sınıfının içerisinde arar.*@
+
+
+        </div>
+        <div class="mb-3">
+
+            <label asp-for="Yazar" class="p-0"></label>
+
+
+            <input asp-for="Yazar" disabled class="form-control class=" form-control" /> @*Burada Model de ne kullandıysak asp-for içerisinde aynı adı kullanmak zorundayız aksi halde çalışmaz. Burada yazdığımız şey Kitap sınıfının içerisinde arar.*@
+
+
+        </div>
+        <div class="mb-3">
+
+            <label asp-for="Fiyat" class="p-0"></label>
+
+
+            <input asp-for="Fiyat" disabled class="form-control class="form-control" /> @*Burada Model de ne kullandıysak asp-for içerisinde aynı adı kullanmak zorundayız aksi halde çalışmaz. Burada yazdığımız şey Kitap sınıfının içerisinde arar.*@
+
+
+            
+        </div>
+       
+
+
+
+        <button type="submit" class="btn btn-lg btn-danger" style="width:250px">Kitap Sil</button>
+
+        <a asp-controller="Kitap" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">Kitaplara Geri Dön</a> @*bu kod bir HTML bağlantısını temsil eder. Bu bağlantı, "Kitap" Controller'ındaki "Ekle" Action'ına yönlendirilir ve "Yeni Kitap Oluştur" metni içeren bir düğme gibi görünen bir bağlantıdır. Bu bağlantı tıklandığında, "Ekle" Action'ı çalışır ve ilgili işlem gerçekleştirilir.*@
+
+    </div>
+
+
+
+
+
+
+</form>
+
+@section Scripts {
+    @{
+
+
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+
+    } @*bu şu manaya gelir buradaki validation javascript içerisindeki kontrollerini otomatik olarak bunun içine gömdük manasına gelir. JavaScript kütüphanelerini dahil etmek için kullanılır. Yani bu javascript gidiyor required de olan hata mesajını alıyor ve gösteriyor.Yani özetle kullanıcı girdilerini front end tarafında kontrol etmiş oluyoruz.*@.

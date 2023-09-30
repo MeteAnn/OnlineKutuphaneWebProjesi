@@ -1,0 +1,107 @@
+﻿@using WebUygulamaProje1.Utility;
+@model List<Kitap> //Sana gelecek olan nesne içinde kitap olan nesneler diyoruz burada
+
+@if (TempData["basarili"] != null) //yani burada demek istediğimiz Controller kısmında biz string bir metin girdiğimizde null olmamuş oluyor burada null değilse diye if komutu açıyoruz zaten bi kereliğine çalışacaktır 
+{
+
+    <h2 style="color:red">@TempData["basarili"]</h2>  //burada tempData neyse ekrana onu yazar.
+
+    
+}
+
+
+    <div class="container">
+
+<div class="row pt-3 pb-4" 
+    <div>
+        <h1>Kitaplar</h1>
+    </div>
+    </div>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+                <th>
+                    Id
+                 </th>
+                 <th>
+                    KitapAdi
+                </th>
+                <th>
+                    Tanim
+                </th>
+                <th>
+                    Yazar
+                </th>
+                <th>
+                    Fiyat
+                </th>
+                <th style="width:100px">
+                    Kitap Türü
+                </th>
+
+                @if (User.IsInRole(UserRoles.Role_Admin))
+                {
+
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                }
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var kitap in Model)
+        {
+            <tr>
+                <td>@kitap.Id</td>
+
+                <td>@kitap.KitapAdi</td>
+
+                <td>@kitap.Tanim</td>
+
+                <td>@kitap.Yazar</td>
+
+                <td>@kitap.Fiyat</td>
+
+                <td>@kitap.KitapTuru.Ad</td>
+
+                    @if (User.IsInRole(UserRoles.Role_Admin))
+                    {
+                <td>
+                        <a asp-controller="Kitap" asp-action="EkleGuncelle" asp-route-id="@kitap.Id" type="button" class="btn btn-warning" style="width:150px">Güncelle</a> @*asp-route-id="@KitapTuru.Id": Bu, bağlantının yol parametresi (route parameter) olarak kullanılacak bir id değeri belirtir. Bu id değeri, @KitapTuru.Id ifadesi ile dinamik olarak belirlenir ve belirli bir "KitapTuru" kaydının kimliğini temsil eder.*@
+                 </td>
+
+
+                    <td>
+
+                        <a asp-controller="Kitap" asp-action="Sil" asp-route-id="@kitap.Id" type="button" class="btn btn-danger" style="width:150px">Sil</a>
+
+
+                        
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+    @if (User.IsInRole(UserRoles.Role_Admin))
+    {
+        <div class="row pt-3 pb-2">
+
+            <div>
+                <a asp-controller="Kitap" asp-action="EkleGuncelle" class="btn btn-lg btn-primary" type="button">
+                    Yeni Kitap Oluştur
+                </a>
+            </div>
+
+        </div>
+    }
+</div>
